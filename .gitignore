@@ -1,0 +1,4 @@
+/.vscode/*
+*.pyc
+/venv/*
+/unit_tests/api_key.py
