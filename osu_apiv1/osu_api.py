@@ -62,7 +62,11 @@ class OsuApiv1():
         except requests.exceptions.ReadTimeout as e:
             raise e from None
 
-        return json.loads(response.content.decode('utf-8'))
+        data = json.loads(response.content.decode('utf-8'))
+        if 'error' in data:
+            raise OsuApiv1Error(data['error'])
+
+        return data
 
 
     @staticmethod
@@ -83,7 +87,11 @@ class OsuApiv1():
         except requests.exceptions.ReadTimeout as e:
             raise e from None
 
-        return json.loads(response.content.decode('utf-8'))
+        data = json.loads(response.content.decode('utf-8'))
+        if 'error' in data:
+            raise OsuApiv1Error(data['error'])
+
+        return data
 
 
     # Thanks https://github.com/Xferno2/CSharpOsu/blob/master/CSharpOsu/CSharpOsu.cs
